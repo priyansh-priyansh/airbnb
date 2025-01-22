@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const ListeningSchema = new Schema({
+const listingSchema = new Schema({
   title: {
     type: String,
     required: true,
@@ -9,16 +9,21 @@ const ListeningSchema = new Schema({
   description: String,
   image: {
     type: String,
-    default : "https://elements-resized.envatousercontent.com/envato-dam-assets-production/EVA/TRX/0e/1d/49/ce/37/v1_E11/E1136TZR.jpg?w=800&cf_fit=scale-down&mark-alpha=18&mark=https%3A%2F%2Felements-assets.envato.com%2Fstatic%2Fwatermark4.png&q=85&format=auto&s=adab2d753f94d72c96aa1aaa5160ea2bfea072cbf2f0b3471dbc849796c55ca5",
-    set: (v) =>
-      v === ""
-        ? "https://elements-resized.envatousercontent.com/envato-dam-assets-production/EVA/TRX/0e/1d/49/ce/37/v1_E11/E1136TZR.jpg?w=800&cf_fit=scale-down&mark-alpha=18&mark=https%3A%2F%2Felements-assets.envato.com%2Fstatic%2Fwatermark4.png&q=85&format=auto&s=adab2d753f94d72c96aa1aaa5160ea2bfea072cbf2f0b3471dbc849796c55ca5"
-        : v,
+    default:
+      "https://images.unsplash.com/photo-1625505826533-5c80aca7d157?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGdvYXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
+    set: (v) => {
+      // Check if the value is an object with a 'url' field
+      if (v && typeof v === 'object' && v.url) {
+        return v.url;  // Extract and return the URL if an object is provided
+      }
+      // If the value is an empty string, use the default image URL
+      return v === "" ? "https://images.unsplash.com/photo-1625505826533-5c80aca7d157?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGdvYXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60" : v;
+    },
   },
   price: Number,
   location: String,
   country: String,
 });
 
-const Listing = mongoose.model("Listing", ListeningSchema);
+const Listing = mongoose.model("Listing", listingSchema);
 module.exports = Listing;
