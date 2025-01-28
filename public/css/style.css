@@ -1,13 +1,26 @@
+/* General body styles */
 body {
-    font-family: "Plus Jakarta Sans" , sans-serif !important;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+    font-family: "Plus Jakarta Sans", sans-serif !important;
 }
 
-.container {
-    flex: 1;
+/* Flexbox container for full height */
+.d-flex {
+    display: flex;
 }
+
+.flex-column {
+    flex-direction: column;
+}
+
+.min-vh-100 {
+    min-height: 100vh; /* Ensure full viewport height */
+}
+
+.flex-grow-1 {
+    flex: 1; /* Main content takes available space */
+}
+
+
 
 .navbar {
     height : 5rem;
