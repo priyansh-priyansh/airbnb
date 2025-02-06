@@ -66,9 +66,14 @@ const sessionOptions = {
     maxAge: 7 * 24 * 60 * 60 * 1000,
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
+    sameSite: process.env.NODE_ENV === "production" ? 'none' : 'lax'
   },
   name: "sessionId",
 };
+
+if (process.env.NODE_ENV === "production") {
+  app.set('trust proxy', 1);
+}
 
 app.use(session(sessionOptions));
 app.use(flash());
@@ -105,6 +110,7 @@ app.use((err, req, res, next) => {
 });
 
 // Server listening
-app.listen(8080, () => {
-  console.log("Listening at port 8080");
+const port = process.env.PORT || 8080;
+app.listen(port, () => {
+  console.log(`Listening at port ${port}`);
 });
