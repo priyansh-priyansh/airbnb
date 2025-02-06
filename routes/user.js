@@ -26,6 +26,12 @@ router
     userController.login
   );
 
+// Add forgot password routes
+router.get("/forgot-password", userController.renderForgotPasswordForm);
+router.post("/forgot-password", wrapAsync(userController.forgotPassword));
+router.get("/reset-password/:token", wrapAsync(userController.renderResetPasswordForm));
+router.post("/reset-password/:token", wrapAsync(userController.resetPassword));
+
 // Logout
 router.get("/logout", userController.logout);
 

@@ -11,7 +11,9 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true,
-  }
+  },
+  resetPasswordToken: String,
+  resetPasswordExpires: Date
 });
 
 userSchema.plugin(passportLocalMongoose); // Remove the usernameField option
