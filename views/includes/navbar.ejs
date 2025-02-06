@@ -20,6 +20,26 @@
     padding: 0.5rem 3rem 0.5rem 3rem;
     font-size: 1rem;
   }
+
+  /* Add mobile-specific styles */
+  @media (max-width: 768px) {
+    .mobile-search {
+      padding: 1rem;
+      background-color: #fff;
+      border-bottom: 1px solid #dee2e6;
+    }
+
+    .navbar-collapse {
+      background-color: white;
+      padding: 1rem;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      border-bottom: 1px solid #dee2e6;
+    }
+  }
 </style>
 
 <nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
@@ -35,25 +55,28 @@
     >
       <span class="navbar-toggler-icon"></span>
     </button>
+
+    <!-- Search form for desktop -->
+    <div class="d-none d-md-block">
+      <form class="d-flex" role="search">
+        <input
+          class="form-control me-2 search-inp search-box"
+          type="search"
+          placeholder="Search destinations"
+        />
+        <button class="btn search-btn" type="submit">
+          <i class="fa-solid fa-magnifying-glass"></i>Search
+        </button>
+      </form>
+    </div>
+
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-link" href="/listings">Explore</a>
-      </div>
-      <div class="navbar-nav ms-auto">
-        <form class="d-flex" role="search">
-          <input
-            class="form-control me-2 search-inp"
-            type="search"
-            placeholder="Search destinations"
-            
-          />
-          <button class="btn search-btn" type="submit">
-            <i class="fa-solid fa-magnifying-glass"></i>Search
-          </button>
-        </form>
+       
       </div>
 
       <div class="navbar-nav ms-auto">
+        <a class="nav-link" href="/listings">Explore</a>
         <a class="nav-link" href="/listings/new">Airbnb your home</a>
         <% if(!currUser) { %>
         <a class="nav-link" href="/signup"><b>Sign up</b></a>
@@ -65,3 +88,17 @@
     </div>
   </div>
 </nav>
+
+
+<div class="d-md-none mobile-search">
+  <form class="d-flex" role="search">
+    <input
+      class="form-control me-2 search-inp search-box"
+      type="search"
+      placeholder="Search destinations"
+    />
+    <button class="btn search-btn" type="submit">
+      <i class="fa-solid fa-magnifying-glass"></i>Search
+    </button>
+  </form>
+</div>

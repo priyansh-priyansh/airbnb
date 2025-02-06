@@ -119,24 +119,23 @@
     <hr />
     <% } %> <% if(listing.reviews.length > 0) { %>
     <div class="row">
-      <p><b>All Reviews</b></p>
+      <h4 class="mb-4">All Reviews</h4>
       <% for(review of listing.reviews) { %>
-      <div class="card col-5 ms-3 mb-3">
+      <div class="card col-12 col-md-5 mx-auto mx-md-2 mb-3">
         <div class="card-body">
-          <h5 class="card-title">@<%= review.author.username %></h5>
+          <h5 class="card-title mb-3">@<%= review.author.username %></h5>
           <p
-            class="starability-result card-text"
+            class="starability-result card-text mb-3"
             data-rating="<%= review.rating %>"
           ></p>
-          <p class="card-text"><%= review.comment %></p>
+          <p class="card-text mb-3"><%= review.comment %></p>
+          <form
+            method="POST"
+            action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=Delete"
+          >
+            <button class="btn btn-sm btn-dark">Delete</button>
+          </form>
         </div>
-        <form
-          class="mb-3 mt-2"
-          method="POST"
-          action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=Delete"
-        >
-          <button class="btn btn-sm btn-dark">Delete</button>
-        </form>
       </div>
       <% } %>
     </div>
