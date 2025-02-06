@@ -111,6 +111,10 @@ app.use((err, req, res, next) => {
 
 // Server listening
 const port = process.env.PORT || 8080;
-app.listen(port, () => {
+const server = app.listen(port, '0.0.0.0', () => {
   console.log(`Listening at port ${port}`);
 });
+
+// Configure keep-alive timeout
+server.keepAliveTimeout = 120000; // 120 seconds
+server.headersTimeout = 120000; // 120 seconds
